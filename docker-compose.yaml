@@ -5,6 +5,7 @@ networks:
 volumes:
   prometheus_data: {}
   grafana_storage: {}
+  influxdb_data: {}
 
 services:
   grafana:
@@ -12,14 +13,17 @@ services:
     container_name: grafana
     restart: unless-stopped
     environment:
-      # increases the log level from info to debug
       - GF_LOG_LEVEL=debug
+      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=grafana-exploretraces-app
     ports:
       - "3000:3000"
     volumes:
       - 'grafana_storage:/var/lib/grafana'
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
     networks:
       - monitoring
+    depends_on:
+      - prometheus
 
   node-exporter:
     image: prom/node-exporter:latest
@@ -33,7 +37,7 @@ services:
       - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
       - '--path.sysfs=/host/sys'
-      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($|/)'
     ports:
       - "9100:9100"
     networks:
@@ -56,6 +60,9 @@ services:
       - "9090:9090"
     networks:
       - monitoring
+    depends_on:
+      - node-exporter
+      - nginx-exporter
 
   nginx:
     image: nginx:latest
@@ -78,11 +85,37 @@ services:
     container_name: nginx-exporter
     ports:
       - "9113:9113"
-    command: -nginx.plus -nginx.scrape-uri=http://nginx:80/stub_status
+    command: -nginx.scrape-uri=http://nginx:80/stub_status
     depends_on:
       nginx:
         condition: service_healthy
     networks:
       - monitoring
-    restart: unless-stopped  
-  
+    restart: unless-stopped
+
+  influxdb:
+    image: influxdb:1.8
+    container_name: influxdb
+    #restart: unless-stopped
+    ports:
+      - "8086:8086"
+    environment:
+      - INFLUXDB_DB=k6
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+    networks:
+      - monitoring
+
+  k6:
+    build: .
+    container_name: k6
+    #restart: unless-stopped
+    networks:
+      - monitoring
+    environment:
+      - K6_OUT=influxdb=http://influxdb:8086/k6
+    volumes:
+      - ./dist:/dist
+    depends_on:
+      - nginx
+      - influxdb
