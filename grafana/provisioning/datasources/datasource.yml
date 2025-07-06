@@ -8,4 +8,9 @@ datasources:
     url: http://influxdb:8086
     isDefault: false
     uid: idinflux
-  
+  - name: Prometheus
+    type: prometheus
+    url: http://prometheus:9090
+    access: proxy
+    isDefault: true
+    uid: idprometheus 
