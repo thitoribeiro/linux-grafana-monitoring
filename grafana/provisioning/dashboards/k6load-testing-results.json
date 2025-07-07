@@ -2205,7 +2205,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "K6 Dashboard",
+  "title": "K6 Monitoring Dashboard",
   "uid": "idinflux",
   "version": 1
 }

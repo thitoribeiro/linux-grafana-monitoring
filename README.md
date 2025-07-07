@@ -45,7 +45,9 @@ Este projeto implementa uma solução de monitoramento completa utilizando Docke
     ```
 
 4.  **Acesse os serviços:**
-    - **Grafana:** [http://localhost:3000](http://localhost:3000) (o dashboard do Node Exporter já estará disponível)
+    - **Grafana:** [http://localhost:3000](http://localhost:3000/dashboards)
+      - **Usuário:** admin
+      - **Senha:** admin
     - **Prometheus:** [http://localhost:9090](http://localhost:9090)
     - **Nginx:** [http://localhost:80](http://localhost:80)
 
@@ -106,7 +108,9 @@ This project implements a complete monitoring solution using Docker to orchestra
     ```
 
 4.  **Access the services:**
-    - **Grafana:** [http://localhost:3000](http://localhost:3000) (the Node Exporter dashboard will be available)
+    - **Grafana:** [http://localhost:3000](http://localhost:3000/dashboards)
+      - **User:** admin
+      - **Password:** admin
     - **Prometheus:** [http://localhost:9090](http://localhost:9090)
     - **Nginx:** [http://localhost:80](http://localhost:80)
 
