@@ -53,11 +53,39 @@ Este projeto implementa uma solução de monitoramento completa utilizando Docke
     docker-compose down
     ```
 
+## Fontes
+
+- **Dashboard k6 Load Testing:** Inspirado no dashboard da comunidade Grafana, disponível em [https://grafana.com/dashboards/2587](https://grafana.com/dashboards/2587).
+- **Dashboard Linux Monitoring:** Baseado no dashboard de monitoramento de hosts Linux, disponível em [https://grafana.com/grafana/dashboards/1860](https://grafana.com/grafana/dashboards/1860) e no repositório [https://github.com/rfmoz/grafana-dashboards](https://github.com/rfmoz/grafana-dashboards).
+
+### Documentações
+
+- **Docker:** [https://docs.docker.com/](https://docs.docker.com/)
+- **Nginx:** [https://nginx.org/en/docs/](https://nginx.org/en/docs/)
+- **Grafana:** [https://grafana.com/docs/](https://grafana.com/docs/)
+- **k6:** [https://k6.io/docs/](https://k6.io/docs/)
+- **Prometheus:** [https://prometheus.io/docs/](https://prometheus.io/docs/)
+- **InfluxDB:** [https://docs.influxdata.com/](https://docs.influxdata.com/)
+
 ---
 
 # Monitoring Project with Grafana, Prometheus, Nginx and k6
 
 This project implements a complete monitoring solution using Docker to orchestrate the services. The stack includes Grafana for data visualization, Prometheus for metrics collection, Node Exporter for host metrics, Nginx as a web server, and k6 for load testing.
+
+## Sources
+
+- **k6 Load Testing Dashboard:** Inspired by the Grafana community dashboard, available at [https://grafana.com/dashboards/2587](https://grafana.com/dashboards/2587).
+- **Linux Monitoring Dashboard:** Based on the Linux host monitoring dashboard, available at [https://grafana.com/grafana/dashboards/1860](https://grafana.com/grafana/dashboards/1860) and the repository [https://github.com/rfmoz/grafana-dashboards](https://github.com/rfmoz/grafana-dashboards).
+
+### Documentations
+
+- **Docker:** [https://docs.docker.com/](https://docs.docker.com/)
+- **Nginx:** [https://nginx.org/en/docs/](https://nginx.org/en/docs/)
+- **Grafana:** [https://grafana.com/docs/](https://grafana.com/docs/)
+- **k6:** [https://k6.io/docs/](https://k6.io/docs/)
+- **Prometheus:** [https://prometheus.io/docs/](https://prometheus.io/docs/)
+- **InfluxDB:** [https://docs.influxdata.com/](https://docs.influxdata.com/)
 
 ## Technologies Used
 
