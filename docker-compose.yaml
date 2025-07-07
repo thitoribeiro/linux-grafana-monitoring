@@ -96,7 +96,6 @@ services:
   influxdb:
     image: influxdb:1.8
     container_name: influxdb
-    #restart: unless-stopped
     ports:
       - "8086:8086"
     environment:
@@ -109,7 +108,6 @@ services:
   k6:
     build: .
     container_name: k6
-    #restart: unless-stopped
     networks:
       - monitoring
     environment:

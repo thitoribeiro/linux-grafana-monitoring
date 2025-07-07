@@ -7,7 +7,12 @@ FROM grafana/k6:latest
 
 COPY --from=git-clone /k6-tests /k6-tests
 
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+
 WORKDIR /k6-tests
 
-CMD ["run", "scenarios/getListUsersLoadTest-script.js"]
+ENTRYPOINT ["entrypoint.sh"]
+
+
+
 
