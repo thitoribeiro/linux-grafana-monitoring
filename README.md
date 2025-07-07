@@ -18,19 +18,20 @@ Este projeto implementa uma solução de monitoramento completa utilizando Docke
 1.  **Containerização:** Todos os serviços são executados em contêineres Docker, definidos no arquivo `docker-compose.yaml`.
 2.  **Orquestração:** O `docker-compose.yaml` define a inicialização e a interconexão dos serviços, com `depends_on` para garantir a ordem correta de subida.
 3.  **Provisionamento Automático do Grafana:**
-    -   **Data Sources:** O data source do Prometheus é configurado automaticamente através do arquivo `grafana/provisioning/datasources/datasource.yml`.
-    -   **Dashboards:** Um dashboard pré-configurado para o Node Exporter é importado automaticamente. A configuração está em `grafana/provisioning/dashboards/default.yml` e o JSON do dashboard em `grafana/provisioning/dashboards/node-exporter-full.json`.
+    - **Data Sources:** O data source do Prometheus é configurado automaticamente através do arquivo `grafana/provisioning/datasources/datasource.yml`.
+    - **Dashboards:** Um dashboard pré-configurado para o Node Exporter é importado automaticamente. A configuração está em `grafana/provisioning/dashboards/default.yml` e o JSON do dashboard em `grafana/provisioning/dashboards/node-exporter-full.json`.
 4.  **Coleta de Métricas:**
-    -   O Prometheus está configurado no arquivo `prometheus.yml` para coletar métricas do `node-exporter` e do `nginx-exporter`.
-    -   O Nginx está configurado em `nginx/nginx.conf` para expor uma página de status (`/stub_status`) que o `nginx-exporter` utiliza.
+    - O Prometheus está configurado no arquivo `prometheus.yml` para coletar métricas do `node-exporter` e do `nginx-exporter`.
+    - O Nginx está configurado em `nginx/nginx.conf` para expor uma página de status (`/stub_status`) que o `nginx-exporter` utiliza.
 5.  **Testes de Carga:**
-    -   O `Dockerfile` define a imagem do k6, que clona um repositório com os scripts de teste.
-    -   O serviço `k6` no `docker-compose.yaml` executa os testes de carga e envia os resultados para o InfluxDB.
+    - O `Dockerfile` define a imagem do k6, que clona um repositório com os scripts de teste.
+    - O serviço `k6` no `docker-compose.yaml` executa os testes de carga e envia os resultados para o InfluxDB.
 
 ## Como Executar o Projeto
 
 1.  **Pré-requisitos:**
-    -   Docker e Docker Compose instalados.
+    - Docker e Docker Compose instalados.
+    - **Importante:** Certifique-se de que o **Docker Desktop está em execução** antes de iniciar os serviços.
 
 2.  **Clone o repositório:**
     ```bash
@@ -44,9 +45,9 @@ Este projeto implementa uma solução de monitoramento completa utilizando Docke
     ```
 
 4.  **Acesse os serviços:**
-    -   **Grafana:** [http://localhost:3000](http://localhost:3000) (o dashboard do Node Exporter já estará disponível)
-    -   **Prometheus:** [http://localhost:9090](http://localhost:9090)
-    -   **Nginx:** [http://localhost:80](http://localhost:80)
+    - **Grafana:** [http://localhost:3000](http://localhost:3000) (o dashboard do Node Exporter já estará disponível)
+    - **Prometheus:** [http://localhost:9090](http://localhost:9090)
+    - **Nginx:** [http://localhost:80](http://localhost:80)
 
 5.  **Para parar os serviços:**
     ```bash
@@ -73,49 +74,25 @@ Este projeto implementa uma solução de monitoramento completa utilizando Docke
 
 This project implements a complete monitoring solution using Docker to orchestrate the services. The stack includes Grafana for data visualization, Prometheus for metrics collection, Node Exporter for host metrics, Nginx as a web server, and k6 for load testing.
 
-## Sources
-
-- **k6 Load Testing Dashboard:** Inspired by the Grafana community dashboard, available at [https://grafana.com/dashboards/2587](https://grafana.com/dashboards/2587).
-- **Linux Monitoring Dashboard:** Based on the Linux host monitoring dashboard, available at [https://grafana.com/grafana/dashboards/1860](https://grafana.com/grafana/dashboards/1860) and the repository [https://github.com/rfmoz/grafana-dashboards](https://github.com/rfmoz/grafana-dashboards).
-
-### Documentations
-
-- **Docker:** [https://docs.docker.com/](https://docs.docker.com/)
-- **Nginx:** [https://nginx.org/en/docs/](https://nginx.org/en/docs/)
-- **Grafana:** [https://grafana.com/docs/](https://grafana.com/docs/)
-- **k6:** [https://k6.io/docs/](https://k6.io/docs/)
-- **Prometheus:** [https://prometheus.io/docs/](https://prometheus.io/docs/)
-- **InfluxDB:** [https://docs.influxdata.com/](https://docs.influxdata.com/)
-
-## Technologies Used
-
-- **Docker and Docker Compose:** For containerization and service orchestration.
-- **Grafana:** Data visualization and analysis platform. Dashboards and data sources are provisioned automatically.
-- **Prometheus:** Monitoring and alerting system. Collects metrics from Node Exporter and Nginx Exporter.
-- **Node Exporter:** Exporter for hardware and OS metrics from Linux.
-- **Nginx:** High-performance web server.
-- **Nginx Prometheus Exporter:** Exports Nginx metrics to Prometheus.
-- **k6:** Load testing tool to evaluate application performance.
-- **InfluxDB:** Time-series database to store the results of k6 load tests.
-
 ## What was done
 
 1.  **Containerization:** All services run in Docker containers, defined in the `docker-compose.yaml` file.
 2.  **Orchestration:** The `docker-compose.yaml` file defines the initialization and interconnection of services, with `depends_on` to ensure the correct startup order.
 3.  **Automatic Grafana Provisioning:**
-    -   **Data Sources:** The Prometheus data source is configured automatically through the `grafana/provisioning/datasources/datasource.yml` file.
-    -   **Dashboards:** A pre-configured dashboard for the Node Exporter is imported automatically. The configuration is in `grafana/provisioning/dashboards/default.yml` and the dashboard JSON is in `grafana/provisioning/dashboards/node-exporter-full.json`.
+    - **Data Sources:** The Prometheus data source is configured automatically through the `grafana/provisioning/datasources/datasource.yml` file.
+    - **Dashboards:** A pre-configured dashboard for the Node Exporter is imported automatically. The configuration is in `grafana/provisioning/dashboards/default.yml` and the dashboard JSON is in `grafana/provisioning/dashboards/node-exporter-full.json`.
 4.  **Metrics Collection:**
-    -   Prometheus is configured in the `prometheus.yml` file to collect metrics from `node-exporter` and `nginx-exporter`.
-    -   Nginx is configured in `nginx/nginx.conf` to expose a status page (`/stub_status`) that the `nginx-exporter` uses.
+    - Prometheus is configured in the `prometheus.yml` file to collect metrics from `node-exporter` and `nginx-exporter`.
+    - Nginx is configured in `nginx/nginx.conf` to expose a status page (`/stub_status`) that the `nginx-exporter` uses.
 5.  **Load Testing:**
-    -   The `Dockerfile` defines the k6 image, which clones a repository with the test scripts.
-    -   The `k6` service in `docker-compose.yaml` runs the load tests and sends the results to InfluxDB.
+    - The `Dockerfile` defines the k6 image, which clones a repository with the test scripts.
+    - The `k6` service in `docker-compose.yaml` runs the load tests and sends the results to InfluxDB.
 
 ## How to Run the Project
 
 1.  **Prerequisites:**
-    -   Docker and Docker Compose installed.
+    - Docker and Docker Compose installed.
+    - **Important:** Make sure **Docker Desktop is running** before starting the services.
 
 2.  **Clone the repository:**
     ```bash
@@ -129,11 +106,25 @@ This project implements a complete monitoring solution using Docker to orchestra
     ```
 
 4.  **Access the services:**
-    -   **Grafana:** [http://localhost:3000](http://localhost:3000) (the Node Exporter dashboard will be available)
-    -   **Prometheus:** [http://localhost:9090](http://localhost:9090)
-    -   **Nginx:** [http://localhost:80](http://localhost:80)
+    - **Grafana:** [http://localhost:3000](http://localhost:3000) (the Node Exporter dashboard will be available)
+    - **Prometheus:** [http://localhost:9090](http://localhost:9090)
+    - **Nginx:** [http://localhost:80](http://localhost:80)
 
 5.  **To stop the services:**
     ```bash
     docker-compose down
     ```
+
+## Sources
+
+- **k6 Load Testing Dashboard:** Inspired by the Grafana community dashboard, available at [https://grafana.com/dashboards/2587](https://grafana.com/dashboards/2587).
+- **Linux Monitoring Dashboard:** Based on the Linux host monitoring dashboard, available at [https://grafana.com/grafana/dashboards/1860](https://grafana.com/grafana/dashboards/1860) and the repository [https://github.com/rfmoz/grafana-dashboards](https://github.com/rfmoz/grafana-dashboards).
+
+### Documentations
+
+- **Docker:** [https://docs.docker.com/](https://docs.docker.com/)
+- **Nginx:** [https://nginx.org/en/docs/](https://nginx.org/en/docs/)
+- **Grafana:** [https://grafana.com/docs/](https://grafana.com/docs/)
+- **k6:** [https://k6.io/docs/](https://k6.io/docs/)
+- **Prometheus:** [https://prometheus.io/docs/](https://prometheus.io/docs/)
+- **InfluxDB:** [https://docs.influxdata.com/](https://docs.influxdata.com/)
